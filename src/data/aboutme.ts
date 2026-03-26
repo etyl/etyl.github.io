@@ -29,7 +29,7 @@ export const aboutMe: AboutMe = {
   googleScholarUrl: "https://scholar.google.com/citations?user=bWtMl_MAAAAJ",
   githubUsername: "etyl",
   linkedinUsername: "hippolyte-verninas",
-  twitterUsername: "hippover",
+  twitterUsername: "hippolytever",
   // blogUrl: "https://",
   // cvUrl: "https://",
   institutionUrl: "https://inria.fr",

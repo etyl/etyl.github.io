@@ -6,6 +6,8 @@ import {
   Twitter,
   ArrowUpRight,
   GraduationCap,
+  FileText,
+  type LucideIcon,
 } from "lucide-react";
 import { AboutMe } from "@/data/aboutme";
 
@@ -13,10 +15,78 @@ interface ProfileSectionProps {
   aboutMe: AboutMe;
 }
 
+interface ProfileLink {
+  href: string;
+  label: string;
+  Icon: LucideIcon;
+}
+
 export function ProfileSection({ aboutMe }: ProfileSectionProps) {
   if (!aboutMe) {
     return null;
   }
+
+  const profileLinks: ProfileLink[] = [
+    {
+      href: `mailto:${aboutMe.email}`,
+      label: "Email",
+      Icon: Mail,
+    },
+    ...(aboutMe.googleScholarUrl
+      ? [
+          {
+            href: aboutMe.googleScholarUrl,
+            label: "Google Scholar",
+            Icon: GraduationCap,
+          },
+        ]
+      : []),
+    ...(aboutMe.twitterUsername
+      ? [
+          {
+            href: `https://twitter.com/${aboutMe.twitterUsername}`,
+            label: "Twitter",
+            Icon: Twitter,
+          },
+        ]
+      : []),
+    ...(aboutMe.githubUsername
+      ? [
+          {
+            href: `https://github.com/${aboutMe.githubUsername}`,
+            label: "GitHub",
+            Icon: Github,
+          },
+        ]
+      : []),
+    ...(aboutMe.linkedinUsername
+      ? [
+          {
+            href: `https://www.linkedin.com/in/${aboutMe.linkedinUsername}`,
+            label: "LinkedIn",
+            Icon: Linkedin,
+          },
+        ]
+      : []),
+    ...(aboutMe.blogUrl
+      ? [
+          {
+            href: aboutMe.blogUrl,
+            label: "Blog",
+            Icon: ArrowUpRight,
+          },
+        ]
+      : []),
+    ...(aboutMe.cvUrl
+      ? [
+          {
+            href: aboutMe.cvUrl,
+            label: "CV",
+            Icon: FileText,
+          },
+        ]
+      : []),
+  ];
 
   return (
     <div className="md:sticky top-12 flex flex-row-reverse md:flex-col gap-4 md:space-y-8">
@@ -58,102 +128,23 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
             aboutMe.institution
           )}
         </p>
-        <div className="flex gap-6 mb-6">
-          {aboutMe.blogUrl && (
-            <a
-              href={aboutMe.blogUrl}
-              className="group inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <ArrowUpRight
-                size={12}
-                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
-              />
-              <span className="tracking-wider uppercase">Blog</span>
-            </a>
-          )}
-          {aboutMe.cvUrl && (
-            <a
-              href={aboutMe.cvUrl}
-              className="group inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <ArrowUpRight
-                size={12}
-                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
-              />
-              <span className="tracking-wider uppercase">CV</span>
-            </a>
-          )}
-        </div>
-        <div className="space-y-2">
-          <a
-            href={`mailto:${aboutMe.email}`}
-            className="inline-flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-900 transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Mail size={14} />
-            {aboutMe.email}
-          </a>
-          {aboutMe.googleScholarUrl && (
-            <>
-              <br />
+        {profileLinks.length > 0 && (
+          <div className="flex flex-wrap items-center gap-4">
+            {profileLinks.map(({ href, label, Icon }) => (
               <a
-                href={aboutMe.googleScholarUrl}
-                className="inline-flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-900 transition-colors"
+                key={label}
+                href={href}
+                aria-label={label}
+                title={label}
+                className="text-zinc-500 hover:text-zinc-900 transition-colors duration-300"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <GraduationCap size={14} />
-                Google Scholar
+                <Icon size={18} />
               </a>
-            </>
-          )}
-          {aboutMe.twitterUsername && (
-            <>
-              <br />
-              <a
-                href={`https://twitter.com/${aboutMe.twitterUsername}`}
-                className="inline-flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-900 transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Twitter size={14} />@{aboutMe.twitterUsername}
-              </a>
-            </>
-          )}
-          {aboutMe.githubUsername && (
-            <>
-              <br />
-              <a
-                href={`https://github.com/${aboutMe.githubUsername}`}
-                className="inline-flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-900 transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github size={14} />
-                github.com/{aboutMe.githubUsername}
-              </a>
-            </>
-          )}
-          {aboutMe.linkedinUsername && (
-            <>
-              <br />
-              <a
-                href={`https://www.linkedin.com/in/${aboutMe.linkedinUsername}`}
-                className="inline-flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-900 transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Linkedin size={14} />
-                linkedin.com/in/{aboutMe.linkedinUsername}
-              </a>
-            </>
-          )}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
