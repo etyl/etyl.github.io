@@ -26,7 +26,7 @@ export const aboutMe: AboutMe = {
     "I'm a PhD student at INRIA MIND working on distributed data compression using machine learning.",
   email: "hippolyte.verninas@inria.fr",
   // imageUrl: "https://images.unsplash.com/photo-1581481615985-ba4775734a9b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  googleScholarUrl: "https://scholar.google.com/citations?user=bWtMl_MAAAAJ",
+  googleScholarUrl: "https://scholar.google.com/citations?user=Z_uHjI8AAAAJ",
   githubUsername: "etyl",
   linkedinUsername: "hippolyte-verninas",
   twitterUsername: "hippolytever",
