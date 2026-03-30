@@ -13,6 +13,12 @@ import { AboutMe } from "@/data/aboutme";
 
 interface ProfileSectionProps {
   aboutMe: AboutMe;
+  sectionMenu?: {
+    sections: string[];
+    selectedSection: string;
+    sectionLabels: Record<string, string>;
+    onSelectSection: (section: string) => void;
+  };
 }
 
 interface ProfileLink {
@@ -21,7 +27,7 @@ interface ProfileLink {
   Icon: LucideIcon;
 }
 
-export function ProfileSection({ aboutMe }: ProfileSectionProps) {
+export function ProfileSection({ aboutMe, sectionMenu }: ProfileSectionProps) {
   if (!aboutMe) {
     return null;
   }
@@ -144,6 +150,26 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
               </a>
             ))}
           </div>
+        )}
+        {sectionMenu && sectionMenu.sections.length > 0 && (
+          <nav aria-label="Section filter" className="pt-6 mt-6 border-t border-zinc-200">
+            <div className="flex flex-col items-start gap-2">
+              {sectionMenu.sections.map((section) => (
+                <button
+                  key={section}
+                  type="button"
+                  onClick={() => sectionMenu.onSelectSection(section)}
+                  className={`text-xs uppercase tracking-wide transition-colors duration-200 ${
+                    sectionMenu.selectedSection === section
+                      ? "text-zinc-900"
+                      : "text-zinc-500 hover:text-zinc-900"
+                  }`}
+                >
+                  {sectionMenu.sectionLabels[section] ?? section}
+                </button>
+              ))}
+            </div>
+          </nav>
         )}
       </div>
     </div>
