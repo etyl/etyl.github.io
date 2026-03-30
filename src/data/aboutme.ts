@@ -19,11 +19,11 @@ export interface AboutMe {
 
 export const aboutMe: AboutMe = {
   name: "Hippolyte Verninas",
-  title: "PhD Candidate",
+  title: "PhD Student",
   institution: "INRIA",
   // Note that links work in the description
   description:
-    "I'm a PhD candidate at INRIA MIND working on distributed data compression using machine learning.",
+    "I'm a PhD student at INRIA MIND working on distributed data compression using machine learning.",
   email: "hippolyte.verninas [at] inria.fr",
   // imageUrl: "https://images.unsplash.com/photo-1581481615985-ba4775734a9b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   googleScholarUrl: "https://scholar.google.com/citations?user=bWtMl_MAAAAJ",

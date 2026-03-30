@@ -20,15 +20,20 @@ type SectionFilter = Section | "about";
 const sectionLabels: Record<SectionFilter, string> = {
   about: "About",
   [Section.News]: "News",
-  [Section.Education]: "Education",
+  [Section.Education]: "Experience & Education",
   [Section.Publication]: "Publications",
   [Section.Experience]: "Experience",
-  [Section.Portfolio]: "Portfolio",
+  [Section.Portfolio]: "Projects",
 };
 
 export default function Home() {
+  const latestPublication = publicationData[0];
+  const latestProject = portfolioData[0];
+
   const availableSections = useMemo(() => {
     const sections: SectionFilter[] = [];
+    const hasEducationOrExperience =
+      educationData.length > 0 || experienceData.length > 0;
 
     if (aboutMe.description) {
       sections.push("about");
@@ -40,13 +45,13 @@ export default function Home() {
           if (newsData.length > 0) sections.push(sectionName);
           break;
         case Section.Education:
-          if (educationData.length > 0) sections.push(sectionName);
+          if (hasEducationOrExperience) sections.push(sectionName);
           break;
         case Section.Publication:
           if (publicationData.length > 0) sections.push(sectionName);
           break;
         case Section.Experience:
-          if (experienceData.length > 0) sections.push(sectionName);
+          // Merged into the Education page as a combined section.
           break;
         case Section.Portfolio:
           if (portfolioData.length > 0) sections.push(sectionName);
@@ -88,12 +93,36 @@ export default function Home() {
 
           {/* Right Column - Scrolling Content */}
           <div className="col-span-12 md:col-span-7 md:col-start-6 space-y-24">
-            {selectedSection === "about" && aboutMe.description && (
+            {selectedSection === "about" && (
               <section>
-                <p
-                  className="font-serif text-sm leading-relaxed text-zinc-700 [&_a]:underline [&_a]:text-zinc-900 [&_a:hover]:text-zinc-600"
-                  dangerouslySetInnerHTML={{ __html: aboutMe.description }}
-                />
+                {aboutMe.description && (
+                  <p
+                    className="font-serif text-sm leading-relaxed text-zinc-700 [&_a]:underline [&_a]:text-zinc-900 [&_a:hover]:text-zinc-600"
+                    dangerouslySetInnerHTML={{ __html: aboutMe.description }}
+                  />
+                )}
+
+                {(latestPublication || latestProject) && (
+                  <div>
+                    <h2 className="font-serif text-l mb-8 tracking-wide uppercase mt-16 space-y-16">
+                      Recent Work
+                    </h2>
+                    <div>
+                      {latestPublication && (
+                        <div>
+                          <PublicationEntry publication={latestPublication} />
+                        </div>
+                      )}
+                      <br />
+                      <br />
+                      {latestProject && (
+                        <div>
+                          <PortfolioEntry portfolio={latestProject} />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
               </section>
             )}
 
@@ -113,15 +142,34 @@ export default function Home() {
             )}
 
             {selectedSection === Section.Education &&
-              educationData.length > 0 && (
+              (educationData.length > 0 || experienceData.length > 0) && (
                 <section>
-                  <h2 className="font-serif text-zinc-700 mb-12 tracking-wide uppercase">
-                    Education
-                  </h2>
-                  <div className="space-y-12">
-                    {educationData.map((education, index) => (
-                      <EducationEntry key={index} education={education} />
-                    ))}
+                  <div className="space-y-20">
+                    {experienceData.length > 0 && (
+                      <div>
+                        <h2 className="font-serif text-md mb-12 tracking-wide uppercase">
+                          Experience
+                        </h2>
+                        <div className="space-y-12">
+                          {experienceData.map((experience, index) => (
+                            <ExperienceEntry key={index} experience={experience} />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {educationData.length > 0 && (
+                      <div>
+                        <h2 className="font-serif text-zinc-700 mb-12 tracking-wide uppercase">
+                          Education
+                        </h2>
+                        <div className="space-y-12">
+                          {educationData.map((education, index) => (
+                            <EducationEntry key={index} education={education} />
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </section>
               )}
@@ -145,24 +193,10 @@ export default function Home() {
                 </section>
               )}
 
-            {selectedSection === Section.Experience &&
-              experienceData.length > 0 && (
-                <section>
-                  <h2 className="font-serif text-md mb-12 tracking-wide uppercase">
-                    Experience
-                  </h2>
-                  <div className="space-y-12">
-                    {experienceData.map((experience, index) => (
-                      <ExperienceEntry key={index} experience={experience} />
-                    ))}
-                  </div>
-                </section>
-              )}
-
             {selectedSection === Section.Portfolio && portfolioData.length > 0 && (
               <section>
                 <h2 className="font-serif text-md mb-12 tracking-wide uppercase">
-                  Portfolio
+                  Projects
                 </h2>
                 <div className="space-y-12">
                   {portfolioData.map((portfolio, index) => (
