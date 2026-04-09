@@ -10,7 +10,7 @@ export interface Portfolio {
 export const portfolioData: Portfolio[] = [
   {
     title: "DiGeo",
-    description: "A python library for differentiable geometry processing, enabling seamless integration of geometric algorithms into deep learning pipelines.",
+    description: "Main contributer on DiGeo, a python library for differentiable geometry processing, enabling seamless integration of geometric algorithms into deep learning pipelines.",
     technologies: ["Python", "PyTorch", "CUDA"],
     projectUrl: "https://digeo.readthedocs.io/",
     imageUrl: "/img/digeo.svg",
@@ -18,7 +18,7 @@ export const portfolioData: Portfolio[] = [
   },
   {
     title: "Benchopt",
-    description: "A python benchmarking framework for machine learning.",
+    description: "Contributor on Benchopt, a python benchmarking framework for machine learning.",
     technologies: ["Python"],
     projectUrl: "https://benchopt.github.io/",
     imageUrl: "/img/logo_benchopt.png",
