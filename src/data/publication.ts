@@ -14,6 +14,14 @@ export interface Publication {
 export const publicationData: Publication[] = [
   // If you don't want to show publications, just make the array empty.
   {
+    year: "2027",
+    conference: "Under review at ICLR",
+    title: "LATEC: Learned Axial Tensor Compression for High-Dimensional Scientific Data",
+    authors: "Hippolyte Verninas, Hadrien Hendrikx, Thomas Moreau",
+    paperUrl: "/papers/latec.pdf",
+    tldr: "We introduce LATEC, an error-bounded compressor with a dimension-agnostic learned GNN predictor. Pretrained on synthetic 2D and 4D fields, a single model compresses scientific data from 3D to 5D while keeping pointwise error guarantees, achieving the best average compression ratio and the best ratio on 9 of 13 scientific fields.",
+  },
+  {
     year: "2026",
     conference: "CVPR",
     title: "Parallelised Differentiable Straightest Geodesics for 3D Meshes",
