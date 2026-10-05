@@ -11,7 +11,7 @@ export const portfolioData: Portfolio[] = [
   {
     title: "DiGeo",
     description: "Main contributer on DiGeo, a python library for differentiable geometry processing, enabling seamless integration of geometric algorithms into deep learning pipelines.",
-    technologies: ["Python", "PyTorch", "CUDA"],
+    technologies: ["Python", "PyTorch", "Differentiable Geometry"],
     projectUrl: "https://digeo.readthedocs.io/",
     imageUrl: "/img/digeo.svg",
     codeUrl: "https://github.com/circle-group/DiGeo",
@@ -19,7 +19,7 @@ export const portfolioData: Portfolio[] = [
   {
     title: "Benchopt",
     description: "Contributor on Benchopt, a python benchmarking framework for machine learning.",
-    technologies: ["Python"],
+    technologies: ["Python", "Benchmarking", "Machine Learning"],
     projectUrl: "https://benchopt.github.io/",
     imageUrl: "/img/logo_benchopt.png",
     codeUrl: "https://github.com/benchopt/benchopt",

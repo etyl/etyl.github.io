@@ -23,7 +23,7 @@ const sectionLabels: Record<SectionFilter, string> = {
   [Section.Education]: "Experience & Education",
   [Section.Publication]: "Publications",
   [Section.Experience]: "Experience",
-  [Section.Portfolio]: "Projects",
+  [Section.Portfolio]: "Software",
 };
 
 export default function Home() {
@@ -196,7 +196,7 @@ export default function Home() {
             {selectedSection === Section.Portfolio && portfolioData.length > 0 && (
               <section>
                 <h2 className="font-serif text-md mb-12 tracking-wide uppercase">
-                  Projects
+                  Software
                 </h2>
                 <div className="space-y-12">
                   {portfolioData.map((portfolio, index) => (
